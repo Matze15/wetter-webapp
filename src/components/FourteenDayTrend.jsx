@@ -220,29 +220,29 @@ export default function FourteenDayTrend({ fourteenDayTrend = [], currentTemp = 
                 className="w-full py-3 px-1 sm:px-2 flex items-center justify-between gap-3 text-left focus:outline-none"
               >
                 {/* Day Name & Date */}
-                <div className="w-20 sm:w-24 flex-shrink-0">
+                <div className="w-16 sm:w-24 flex-shrink-0">
                   <span className={`text-sm font-semibold block tracking-tight ${isToday ? 'font-bold text-neutral-950 dark:text-white' : 'text-neutral-900 dark:text-white/90'}`}>
                     {isToday ? 'Heute' : day.date.split(' ')[0]}
                   </span>
-                  <span className="text-[11px] text-neutral-500 dark:text-white/50 block">
+                  <span className="text-[11px] text-neutral-500 dark:text-white/50 block truncate">
                     {day.date.split(' ')[1] || day.date}
                   </span>
                 </div>
 
                 {/* Weather Icon & Rain % / Amount */}
-                <div className="flex items-center gap-2 sm:gap-2.5 w-32 sm:w-36 flex-shrink-0">
+                <div className="flex items-center gap-1.5 sm:gap-2.5 w-24 sm:w-36 flex-shrink-0 min-w-0">
                   <WeatherIcon
                     symbol={day.symbol}
                     condition={day.condition}
-                    className="w-7 h-7 sm:w-8 sm:h-8"
+                    className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0"
                   />
-                  <div className="flex flex-col text-left">
-                    <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300 flex items-center gap-0.5">
+                  <div className="flex flex-col text-left truncate">
+                    <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300 flex items-center gap-0.5 truncate">
                       <Droplets className="w-3 h-3 text-sky-500 flex-shrink-0" />
                       <span>{day.rainProb || '0%'}</span>
                     </span>
                     {day.rainAmount && (
-                      <span className="text-[10px] font-semibold text-blue-600 dark:text-sky-300 tracking-tight">
+                      <span className="text-[10px] font-semibold text-blue-600 dark:text-sky-300 tracking-tight truncate">
                         {day.rainAmount}
                       </span>
                     )}

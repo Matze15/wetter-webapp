@@ -41,8 +41,8 @@ export default function RadarCard({ radar, cityName = 'Berlin' }) {
           <span className="text-xs text-neutral-500 dark:text-white/50">• {cityName}</span>
         </div>
 
-        {/* Radar Layer Selector (Monochrome Apple Segmented Style) */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-neutral-100 dark:bg-black/30 p-1 rounded-xl border border-neutral-200 dark:border-white/10">
+        {/* Radar Layer Selector (Monochrome Apple Segmented Style - horizontally scrollable on mobile) */}
+        <div className="flex items-center gap-1.5 bg-neutral-100 dark:bg-black/30 p-1 rounded-xl border border-neutral-200 dark:border-white/10 overflow-x-auto no-scrollbar touch-momentum flex-nowrap max-w-full">
           {[
             { id: 'wr', label: 'WetterRadar' },
             { id: 'rr', label: 'RegenRadar' },
@@ -53,7 +53,7 @@ export default function RadarCard({ radar, cityName = 'Berlin' }) {
             <button
               key={tab.id}
               onClick={() => setRadarType(tab.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 active:scale-[0.98] ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap flex-shrink-0 transition-all duration-150 active:scale-[0.98] ${
                 radarType === tab.id
                   ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm font-semibold'
                   : 'text-neutral-600 dark:text-white/70 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/70 dark:hover:bg-white/10'
@@ -66,7 +66,7 @@ export default function RadarCard({ radar, cityName = 'Berlin' }) {
       </div>
 
       {/* Full-width Radar Viewport Container with Interaction Lock */}
-      <div className="relative mt-4 w-full rounded-2xl overflow-hidden bg-neutral-100 dark:bg-black/60 border border-neutral-200 dark:border-white/10 shadow-inner h-[500px] sm:h-[560px] lg:h-[620px] group">
+      <div className="relative mt-4 w-full rounded-2xl overflow-hidden bg-neutral-100 dark:bg-black/60 border border-neutral-200 dark:border-white/10 shadow-inner h-[380px] sm:h-[480px] lg:h-[620px] group">
         <iframe
           key={`${radarType}-${lat}-${lon}`}
           src={getRadarIframeUrl()}
@@ -81,11 +81,11 @@ export default function RadarCard({ radar, cityName = 'Berlin' }) {
           <div
             onClick={() => setIsUnlocked(true)}
             className="absolute inset-0 z-20 flex items-center justify-center bg-black/10 dark:bg-black/25 backdrop-blur-[1px] hover:backdrop-blur-none cursor-pointer transition-all duration-200"
-            title="Klicken, um das Radar zu steuern und zu zoomen"
+            title="Tippen oder Klicken, um das Radar zu steuern und zu zoomen"
           >
             <div className="px-4 py-2.5 rounded-2xl apple-glass shadow-lg flex items-center gap-2.5 text-xs font-semibold text-neutral-900 dark:text-white hover:scale-105 active:scale-95 transition-all">
               <MousePointerClick className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
-              <span>Zum Zoomen & Steuern klicken</span>
+              <span>Zum Zoomen & Steuern tippen</span>
             </div>
           </div>
         )}

@@ -93,16 +93,19 @@ export default function CitySearchModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/40 dark:bg-black/60 backdrop-blur-md transition-all duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-start justify-center pt-0 sm:pt-24 p-0 sm:px-4 bg-black/40 dark:bg-black/60 backdrop-blur-md transition-all duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-xl apple-glass rounded-3xl overflow-hidden shadow-2xl text-neutral-900 dark:text-white animate-in fade-in zoom-in-95 duration-150"
+        className="relative w-full max-w-xl apple-glass rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl text-neutral-900 dark:text-white apple-bottom-sheet max-h-[88dvh] sm:max-h-[85vh] flex flex-col"
         onClick={e => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
+        {/* Mobile Drag Indicator Bar */}
+        <div className="w-10 h-1 rounded-full bg-neutral-300 dark:bg-white/20 mx-auto mt-2.5 mb-1 sm:hidden flex-shrink-0" />
+
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-5 py-4 border-b border-black/10 dark:border-white/10">
+        <div className="flex items-center gap-3 px-4 sm:px-5 py-3 sm:py-4 border-b border-black/10 dark:border-white/10 flex-shrink-0">
           <Search className="w-5 h-5 text-neutral-400 dark:text-white/50 flex-shrink-0" />
           <input
             ref={inputRef}
@@ -197,13 +200,19 @@ export default function CitySearchModal({
         </div>
 
         {/* Footer shortcuts */}
-        <div className="flex items-center justify-between px-5 py-2.5 bg-neutral-100/70 dark:bg-black/20 border-t border-black/5 dark:border-white/5 text-[11px] text-neutral-500 dark:text-white/40">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-neutral-100/70 dark:bg-black/20 border-t border-black/5 dark:border-white/5 text-[11px] text-neutral-500 dark:text-white/40 flex-shrink-0">
+          <div className="hidden sm:flex items-center gap-3">
             <span>↑↓ Navigieren</span>
             <span>↵ Auswählen</span>
             <span>Esc Schließen</span>
           </div>
-          <span>WetterOnline Ortsdaten</span>
+          <span className="text-[11px]">WetterOnline Ortsdaten</span>
+          <button
+            onClick={onClose}
+            className="sm:hidden px-3 py-1 rounded-xl bg-neutral-200/80 dark:bg-white/10 text-neutral-800 dark:text-white text-xs font-semibold"
+          >
+            Schließen
+          </button>
         </div>
 
       </div>

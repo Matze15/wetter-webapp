@@ -27,17 +27,17 @@ export default function Header({
   const isCurrentFavorite = favorites.includes(currentCity?.slug);
 
   return (
-    <header className="sticky top-0 z-40 w-full px-4 sm:px-6 lg:px-8 pt-3 pb-2 transition-all">
-      <div className="max-w-7xl mx-auto">
-        <div className="apple-glass rounded-2xl px-4 py-2.5 flex items-center justify-between gap-3 shadow-md">
+    <header className="sticky top-0 z-40 w-full px-3 sm:px-6 lg:px-8 pt-safe pb-2 transition-all">
+      <div className="max-w-7xl mx-auto space-y-2">
+        <div className="apple-glass rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-3 shadow-md">
           
           {/* Left: Brand Icon & App Title */}
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="flex items-center gap-2 flex-shrink-0">
               <div className="w-8 h-8 rounded-xl bg-neutral-900 dark:bg-white/10 text-white p-[1px] shadow-sm flex items-center justify-center">
                 <CloudSun className="w-4 h-4 text-amber-400" />
               </div>
-              <div>
+              <div className="hidden xs:block">
                 <h1 className="text-sm font-semibold tracking-tight text-neutral-900 dark:text-white leading-none">
                   Wetter
                 </h1>
@@ -47,12 +47,12 @@ export default function Header({
             <div className="h-5 w-[1px] bg-neutral-200 dark:bg-white/15 hidden sm:block" />
 
             {/* Current City indicator with Star button */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-neutral-100 dark:bg-white/10 border border-neutral-200/80 dark:border-white/10 text-xs font-medium text-neutral-800 dark:text-white/90">
-              <MapPin className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-300" />
-              <span className="font-semibold">{currentCity?.name || 'Berlin'}</span>
+            <div className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 rounded-xl bg-neutral-100 dark:bg-white/10 border border-neutral-200/80 dark:border-white/10 text-xs font-medium text-neutral-800 dark:text-white/90 min-w-0">
+              <MapPin className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-300 flex-shrink-0" />
+              <span className="font-semibold truncate max-w-[100px] xs:max-w-[140px] sm:max-w-none">{currentCity?.name || 'Berlin'}</span>
               <button
                 onClick={() => onToggleFavorite(currentCity?.slug)}
-                className="ml-1 p-0.5 rounded hover:bg-neutral-200 dark:hover:bg-white/15 transition-colors"
+                className="ml-0.5 p-1 rounded hover:bg-neutral-200 dark:hover:bg-white/15 transition-colors flex-shrink-0"
                 title={isCurrentFavorite ? 'Aus Favoriten entfernen' : 'Zu Favoriten hinzufügen'}
               >
                 <Star className={`w-3.5 h-3.5 ${isCurrentFavorite ? 'text-amber-500 fill-amber-500' : 'text-neutral-400 dark:text-white/40 hover:text-neutral-700 dark:hover:text-white/80'}`} />
@@ -145,6 +145,39 @@ export default function Header({
           </div>
 
         </div>
+
+        {/* Mobile Horizontal Favorites Bar (visible on < lg viewports) */}
+        {favoriteCitiesList.length > 0 && (
+          <div className="flex lg:hidden items-center gap-1.5 overflow-x-auto no-scrollbar touch-momentum py-0.5 px-0.5">
+            {favoriteCitiesList.map(city => {
+              const isActive = city.slug === currentCity?.slug;
+              return (
+                <button
+                  key={`mob-fav-${city.slug}`}
+                  onClick={() => onSelectCity(city.slug)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all duration-150 flex-shrink-0 active:scale-[0.97] shadow-sm ${
+                    isActive
+                      ? 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-semibold'
+                      : 'apple-glass text-neutral-700 dark:text-white/80 hover:bg-neutral-100 dark:hover:bg-white/15'
+                  }`}
+                >
+                  <Star className="w-3 h-3 text-amber-500 fill-amber-500 flex-shrink-0" />
+                  <span>{city.name}</span>
+                </button>
+              );
+            })}
+
+            {onOpenEditFavorites && (
+              <button
+                onClick={onOpenEditFavorites}
+                className="p-1.5 rounded-xl apple-glass text-neutral-500 dark:text-white/50 hover:text-neutral-900 dark:hover:text-white transition-colors flex-shrink-0 active:scale-[0.97] shadow-sm"
+                title="Favoriten verwalten"
+              >
+                <SlidersHorizontal className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );

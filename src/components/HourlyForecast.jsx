@@ -12,7 +12,7 @@ export default function HourlyForecast({ hourlyForecast = [] }) {
   const today = new Date();
 
   return (
-    <section className="apple-glass-card p-5 mb-6">
+    <section className="apple-glass-card p-4 sm:p-5 mb-6">
       <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-200 dark:border-white/10">
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
@@ -20,7 +20,7 @@ export default function HourlyForecast({ hourlyForecast = [] }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 overflow-x-auto apple-scrollbar pb-3 pt-1 px-1">
+      <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto apple-scrollbar touch-momentum pb-3 pt-1 px-1">
         {hourlyForecast.map((hour, idx) => {
           const isFirst = idx === 0;
           const isMidnight = idx > 0 && hour.time === '00:00';
@@ -56,7 +56,7 @@ export default function HourlyForecast({ hourlyForecast = [] }) {
             <React.Fragment key={`hour-frag-${idx}`}>
               {daySeparatorElement}
               <div
-                className={`flex-shrink-0 flex flex-col items-center justify-between p-3 rounded-2xl transition-all duration-150 min-w-[82px] sm:min-w-[88px] text-center ${
+                className={`flex-shrink-0 flex flex-col items-center justify-between p-2.5 sm:p-3 rounded-2xl transition-all duration-150 min-w-[76px] sm:min-w-[88px] text-center ${
                   isFirst
                     ? 'bg-white dark:bg-white/15 border border-neutral-300 dark:border-white/25 shadow-sm'
                     : 'bg-neutral-100/70 dark:bg-white/5 border border-neutral-200/70 dark:border-white/5 hover:bg-neutral-100 dark:hover:bg-white/10'

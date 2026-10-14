@@ -79,15 +79,18 @@ export default function FavoritesModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 dark:bg-black/70 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/40 dark:bg-black/70 backdrop-blur-md transition-all duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-md apple-glass rounded-3xl overflow-hidden shadow-2xl p-5 sm:p-6 text-neutral-900 dark:text-white"
+        className="relative w-full max-w-md apple-glass rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl p-4 sm:p-6 text-neutral-900 dark:text-white apple-bottom-sheet max-h-[88dvh] sm:max-h-[85vh] flex flex-col"
         onClick={e => e.stopPropagation()}
       >
+        {/* Mobile Drag Indicator Bar */}
+        <div className="w-10 h-1 rounded-full bg-neutral-300 dark:bg-white/20 mx-auto mb-2 sm:hidden flex-shrink-0" />
+
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-black/10 dark:border-white/10">
+        <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-black/10 dark:border-white/10 flex-shrink-0">
           <div className="flex items-center gap-2">
             <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
             <h2 className="text-base font-semibold text-neutral-900 dark:text-white tracking-tight">Favoriten verwalten</h2>
@@ -206,10 +209,10 @@ export default function FavoritesModal({
         </div>
 
         {/* Footer */}
-        <div className="mt-5 pt-3 border-t border-black/10 dark:border-white/10 flex items-center justify-end">
+        <div className="mt-4 sm:mt-5 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-black/10 dark:border-white/10 flex items-center justify-end flex-shrink-0">
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl bg-neutral-900 hover:bg-black text-xs font-semibold text-white dark:bg-white/20 dark:hover:bg-white/30 dark:text-white active:scale-[0.98] transition-all"
+            className="w-full sm:w-auto px-5 py-2 sm:py-1.5 rounded-xl bg-neutral-900 hover:bg-black text-xs font-semibold text-white dark:bg-white/20 dark:hover:bg-white/30 dark:text-white active:scale-[0.98] transition-all text-center"
           >
             Fertig
           </button>

@@ -13,9 +13,9 @@ export default function FourDayForecast({ fourDayForecast = [] }) {
   };
 
   return (
-    <section className="apple-glass-card p-4 sm:p-5 mb-6 overflow-hidden">
+    <section className="apple-glass-card p-3 sm:p-5 mb-6 overflow-hidden">
       {/* 1. Header Title */}
-      <div className="flex items-center justify-between pb-3 border-b border-neutral-200/80 dark:border-white/10 mb-4 px-1">
+      <div className="flex items-center justify-between pb-3 border-b border-neutral-200/80 dark:border-white/10 mb-3 sm:mb-4 px-1">
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
           <h3 className="apple-caption">4-Tage-Vorhersage</h3>
@@ -23,13 +23,13 @@ export default function FourDayForecast({ fourDayForecast = [] }) {
       </div>
 
       {/* 2. 4-Day Comparative Column Grid (divided by vertical hairline lines) */}
-      <div className="overflow-x-auto apple-scrollbar pb-1">
-        <div className="grid grid-cols-4 divide-x divide-neutral-200/80 dark:divide-white/10 min-w-[360px] sm:min-w-full">
+      <div className="overflow-x-auto apple-scrollbar touch-momentum pb-1">
+        <div className="grid grid-cols-4 divide-x divide-neutral-200/80 dark:divide-white/10 min-w-[310px] sm:min-w-full">
           {fourDayForecast.slice(0, 4).map((day, dIdx) => {
             return (
               <div
                 key={day.dayIndex ?? dIdx}
-                className="flex flex-col px-2 sm:px-3 text-center"
+                className="flex flex-col px-1 sm:px-3 text-center"
               >
                 {/* Header: Date & Day Name */}
                 <div className="pb-3 border-b border-neutral-200/60 dark:border-white/5">

@@ -167,7 +167,7 @@ export default function App() {
       />
 
       {/* Main Content Dashboard */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 relative z-10">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 relative z-10">
         
         {/* Error Notification Banner */}
         {error && (
@@ -250,7 +250,7 @@ export default function App() {
       </main>
 
       {/* Footer (Single dignified source credit) */}
-      <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-12 border-t border-black/10 dark:border-white/10 text-center text-xs text-neutral-500 dark:text-white/50 space-y-1">
+      <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-[max(2rem,env(safe-area-inset-bottom))] mt-10 sm:mt-12 border-t border-black/10 dark:border-white/10 text-center text-xs text-neutral-500 dark:text-white/50 space-y-1">
         <p>Wetter-App • Handgefertigt nach Apple Human Interface Guidelines & Fluid Motion Principles</p>
         <p className="text-[11px] text-neutral-400 dark:text-white/40">
           Wetterdaten, 14-Tage-Trend, 4-Tage-Tageszeiten & Radar live gewebscraped von <a href="https://www.wetteronline.de" target="_blank" rel="noopener noreferrer" className="text-neutral-700 hover:text-black dark:text-white/70 dark:hover:text-white underline underline-offset-2">WetterOnline.de</a>

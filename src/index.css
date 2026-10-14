@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    --sat: env(safe-area-inset-top, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
     --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
     font-family: var(--apple-font);
     -webkit-font-smoothing: antialiased;
@@ -11,16 +15,52 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
     background-color: #f5f6f9;
     color: #111827;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding-left: var(--sal);
+    padding-right: var(--sar);
   }
 
   body.dark {
     background-color: #121316;
     color: #ffffff;
+  }
+}
+
+/* Safe Area Inset Utility Classes for iOS Notch & Home Indicator */
+.pt-safe {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+}
+
+.pb-safe {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+.touch-momentum {
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes appleSheetSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 639px) {
+  .apple-bottom-sheet {
+    animation: appleSheetSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
 
@@ -102,7 +142,7 @@
 
 /* Apple Typography Optical Sizing */
 .apple-display-temp {
-  font-size: clamp(4.5rem, 9vw, 7.5rem);
+  font-size: clamp(3.75rem, 14vw, 7.5rem);
   font-weight: 200;
   line-height: 0.95;
   letter-spacing: -0.04em;

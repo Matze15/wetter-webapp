@@ -12,8 +12,8 @@ export default function CurrentHero({ weather, isFavorite = false, onToggleFavor
   const minTemp = today?.minTemp ?? current.minTemp ?? Math.round(current.temp - 3);
 
   return (
-    <div className="relative overflow-hidden apple-glass-card p-6 sm:p-8 mb-6 transition-all duration-300">
-      <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div className="relative overflow-hidden apple-glass-card p-5 sm:p-8 mb-6 transition-all duration-300">
+      <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
         
         {/* Left: City & Conditions */}
         <div className="space-y-1.5">
